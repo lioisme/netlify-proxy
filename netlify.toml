@@ -1,3 +1,17 @@
+# netlify.toml
+
+
+[build]
+  # 假设你的静态内容在 public 目录，如果不是，请修改
+  # 如果没有构建步骤，可以注释掉 command
+  # command = "echo 'No build command'"
+  publish = "public" # 确保这个目录存在或与你的项目匹配
+
+# --- Edge Functions 配置 ---
+
+# 使用一个通配符路径将所有请求发送到 proxy-handler 函数
+# 函数内部逻辑将决定是否进行代理
 [[edge_functions]]
-  function = "proxy"
+  function = "proxy-handler" # 对应 netlify/edge-functions/proxy-handler.ts
   path = "/*"
+
