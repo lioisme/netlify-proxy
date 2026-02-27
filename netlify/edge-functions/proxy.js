@@ -3,7 +3,7 @@ const TARGET_URL = Netlify.env.get("TARGET_URL") || "https://google.com";
 
 export default async (request: Request) => {
   const url = new URL(request.url);
-  const targetUrl = JELLYFIN_URL + url.pathname + url.search;
+  const targetUrl = TARGET_URL + url.pathname + url.search;
 
   // 构建转发头
   const headers = new Headers(request.headers);
@@ -11,7 +11,7 @@ export default async (request: Request) => {
   headers.set("X-Forwarded-Host", url.host);
   headers.set("X-Forwarded-For", request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "");
   headers.set("X-Real-IP", request.headers.get("x-forwarded-for") || "");
-  headers.set("Host", new URL(JELLYFIN_URL).host);
+  headers.set("Host", new URL(TARGET_URL).host);
 
   try {
     // 发起请求
