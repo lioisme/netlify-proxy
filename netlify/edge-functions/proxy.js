@@ -1,5 +1,5 @@
 // 从环境变量读取目标地址，格式: http://ip:port 或 https://domain
-const TARGET_URL = Netlify.env.get("JELLYFIN_URL") || "https://google.com";
+const TARGET_URL = Netlify.env.get("TARGET_URL") || "https://google.com";
 
 export default async (request: Request) => {
   const url = new URL(request.url);
