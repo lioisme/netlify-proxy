@@ -1,6 +1,3 @@
-[[redirects]]
-  from = "/*"
-  to = "http://lioisme.us.ci:8096/:splat"
-  status = 200
-  force = true
-  headers = {X-Forwarded-Host = ":host"}
+[[edge_functions]]
+  function = "proxy"
+  path = "/*"
