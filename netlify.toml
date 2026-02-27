@@ -1,5 +1,24 @@
-[[redirects]]
-    from = "/*"
-    to = "http://lioisme.us.ci:8096/:splat"
-    status = 200
-    force = true
+# netlify.toml
+# 通用反向代理配置
+
+[build]
+  publish = "public"
+  command = "echo 'No build required'"
+
+[[edge_functions]]
+  function = "proxy"
+  path = "/*"
+
+# ==================== 环境变量示例（复制到 Dashboard 设置） ====================
+# 生产环境默认值（会被 Dashboard 设置覆盖）
+[context.production.environment]
+  TARGET_URL = "http://kkk.us.kg:8096"
+  # ALLOWED_HEADERS = "authorization, content-type, x-custom-header"
+  # PROXY_DEBUG = "false"
+  # CUSTOM_HEADERS = '{"X-Proxy-By": "Netlify-Edge"}'
+
+[context.deploy-preview.environment]
+  TARGET_URL = "http://kkk.us.kg:8096"
+
+[context.branch-deploy.environment]
+  TARGET_URL = "http://kkk.us.kg:8096"
